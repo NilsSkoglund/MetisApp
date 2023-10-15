@@ -1,0 +1,36 @@
+<div class="col">
+	<div class="card placeholder-card m-3" style="width: 18rem;">
+		<div class="add-patient-overlay" style="position:absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;
+                                                background: rgba(255, 255, 255, 0.8); padding: 0px; border-radius: 10px;">
+			<button type="button" class="btn btn-outline-success btn fw-bolder"
+			        data-bs-toggle="modal" data-bs-target="#addPatientModal">
+				Add New Patient
+			</button>
+		</div>
+		<div class="card-body blurred-content" style="filter: blur(4px); pointer-events: none; user-select: none;">
+			<div class="d-flex justify-content-between">
+				<h5 class="card-title">John Doe</h5>
+				<div>
+					M
+					35
+				</div>
+			</div>
+
+            <p class="card-text">Presented with sudden chest pain, shortness of breath. History of long flight two days ago.</p>
+		</div>
+		<ul class="list-group list-group-flush blurred-content" style="filter: blur(4px); pointer-events: none; user-select: none;">
+		    <li class="list-group-item">History: DVT, Smoker</li>
+		    <li class="list-group-item">Occupation: Software Developer</li>
+		    <li class="list-group-item">Medication: Occasional Aspirin</li>
+		</ul>
+		<div class="card-body blurred-content" style="filter: blur(4px); pointer-events: none; user-select: none;">
+		    <div class="row">
+			    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+					<button type="button" class="btn btn-outline-primary btn-sm">Go to Patient</button>
+				    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
+			        <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+			    </div>
+		    </div>
+		</div>
+	</div>
+</div>

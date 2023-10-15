@@ -1,0 +1,50 @@
+{% extends "base-layout.html" %}
+{% load static %}
+{% block title %}Patients{% endblock %}
+
+{% block head %}
+<script src="{% static 'patients/js/delete_patient.js' %}"></script>
+{% endblock %}
+
+<!-- Main content -->
+{% block content %}
+<div class="container">
+	<div class="row">
+
+		{% for patient in patients %}
+			<div class="col">
+				<div class="card m-3" style="width: 18rem;">
+					<div class="card-body">
+						<div class="d-flex justify-content-between">
+			                <h5 class="card-title">{{ patient.first_name }} {{ patient.last_name }}</h5>
+			                <div>
+				                {{ patient.gender }}
+								{{ patient.age }}
+			                </div>
+		                </div>
+					    <p class="card-text">{{ patient.description }}</p>
+					</div>
+					<ul class="list-group list-group-flush">
+					    <li class="list-group-item">History: {{ patient.history }}</li>
+					    <li class="list-group-item">Occupation: {{ patient.occupation }}</li>
+					    <li class="list-group-item">Medication: {{ patient.medication }}</li>
+					</ul>
+					<div class="card-body">
+					    <div class="row">
+						    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+								<button type="button" class="btn btn-outline-primary btn-sm">Go to Patient</button>
+							    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
+						        <button type="button" class="btn btn-outline-danger btn-sm delete-btn" data-patient-id="{{ patient.id }}">Delete</button>
+						    </div>
+					    </div>
+					</div>
+				</div>
+		</div>
+		{% endfor %}
+		{% include '_add_patient_placeholder.html' %}
+	</div>
+</div>
+{% include '_new_patient_modal.html' %}
+
+{% endblock %}
+
