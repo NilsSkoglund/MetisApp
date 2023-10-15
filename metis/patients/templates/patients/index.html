@@ -1,86 +1,50 @@
 {% extends "base-layout.html" %}
-
+{% load static %}
 {% block title %}Patients{% endblock %}
+
 {% block head %}
+<script src="{% static 'patients/js/delete_patient.js' %}"></script>
 {% endblock %}
+
+<!-- Main content -->
 {% block content %}
-<div class="container"><p></p></div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-4">
 
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">John Doe</h5>
-				    <p class="card-text">Presented with sudden chest pain, shortness of breath. History of long flight two days ago.</p>
-				</div>
-				<ul class="list-group list-group-flush">
-				    <li class="list-group-item">History: DVT, Smoker</li>
-				    <li class="list-group-item">Occupation: Software Developer</li>
-				    <li class="list-group-item">Medication: Occasional Aspirin</li>
-				</ul>
-				<div class="card-body">
-				    <div class="row">
-					    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-							<button type="button" class="btn btn-outline-primary btn-sm">Go to Patient</button>
-						    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
-					        <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+		{% for patient in patients %}
+			<div class="col">
+				<div class="card m-3" style="width: 18rem;">
+					<div class="card-body">
+						<div class="d-flex justify-content-between">
+			                <h5 class="card-title">{{ patient.first_name }} {{ patient.last_name }}</h5>
+			                <div>
+				                {{ patient.gender }}
+								{{ patient.age }}
+			                </div>
+		                </div>
+					    <p class="card-text">{{ patient.description }}</p>
+					</div>
+					<ul class="list-group list-group-flush">
+					    <li class="list-group-item">History: {{ patient.history }}</li>
+					    <li class="list-group-item">Occupation: {{ patient.occupation }}</li>
+					    <li class="list-group-item">Medication: {{ patient.medication }}</li>
+					</ul>
+					<div class="card-body">
+					    <div class="row">
+						    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+								<button type="button" class="btn btn-outline-primary btn-sm">Go to Patient</button>
+							    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
+						        <button type="button" class="btn btn-outline-danger btn-sm delete-btn" data-patient-id="{{ patient.id }}">Delete</button>
+						    </div>
 					    </div>
-				    </div>
+					</div>
 				</div>
-			</div>
 		</div>
-		<div class="col-md-4">
-
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">Linda Smith</h5>
-				    <p class="card-text">Reports feeling faint, sudden onset. Noted leg swelling and pain.</p>
-				</div>
-				<ul class="list-group list-group-flush">
-				    <li class="list-group-item">Recent surgery (knee replacement)</li>
-				    <li class="list-group-item">Occupation: School Teacher</li>
-				    <li class="list-group-item">Medication: Post-op pain meds</li>
-				</ul>
-				<div class="card-body">
-				    <div class="row">
-					    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-							<button type="button" class="btn btn-outline-primary btn-sm">Go to Patient</button>
-						    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
-					        <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
-					    </div>
-				    </div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="card placeholder-card" style="width: 18rem;">
-				<div class="add-patient-overlay" style="position:absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;
-                                                        background: rgba(255, 255, 255, 0.8); padding: 0px; border-radius: 10px;">
-					<button type="button" class="btn btn-outline-success btn fw-bolder">Add New Patient</button>
-				</div>
-				<div class="card-body blurred-content" style="filter: blur(4px); pointer-events: none; user-select: none;">
-					<h5 class="card-title">John Doe</h5>
-		            <p class="card-text">Presented with sudden chest pain, shortness of breath. History of long flight two days ago.</p>
-				</div>
-				<ul class="list-group list-group-flush blurred-content" style="filter: blur(4px); pointer-events: none; user-select: none;">
-				    <li class="list-group-item">History: DVT, Smoker</li>
-				    <li class="list-group-item">Occupation: Software Developer</li>
-				    <li class="list-group-item">Medication: Occasional Aspirin</li>
-				</ul>
-				<div class="card-body blurred-content" style="filter: blur(4px); pointer-events: none; user-select: none;">
-				    <div class="row">
-					    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-							<button type="button" class="btn btn-outline-primary btn-sm">Go to Patient</button>
-						    <button type="button" class="btn btn-outline-warning btn-sm">Edit</button>
-					        <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
-					    </div>
-				    </div>
-				</div>
-			</div>
-		</div>
+		{% endfor %}
+		{% include '_add_patient_placeholder.html' %}
 	</div>
 </div>
+{% include '_new_patient_modal.html' %}
 
 {% endblock %}
 
