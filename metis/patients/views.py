@@ -3,7 +3,10 @@ from .forms import NewPatientForm
 from .models import Patient
 from django.http import JsonResponse
 import openai
+from django.http import HttpResponse
 
+def home_view(request):
+    return HttpResponse("Welcome to the home page!")
 
 def index(request):
     if request.method == 'POST':
